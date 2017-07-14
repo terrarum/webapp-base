@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "export NODE_ENV=production && webpack",
     "dev": "webpack-dev-server --progress --colors"
   },
   "author": "",
@@ -23,6 +23,8 @@
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-loader": "^1.8.0",
     "eslint-plugin-import": "^2.6.1",
+    "extract-loader": "^0.1.0",
+    "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
     "node-sass": "^4.5.3",
     "postcss-import": "^10.0.0",

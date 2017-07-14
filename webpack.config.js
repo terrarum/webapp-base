@@ -1,3 +1,5 @@
+var production = process.env.NODE_ENV === 'production';
+
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -12,6 +14,18 @@ var htmlWebpackOptions = {
   template: 'src/index.html',
   inject: 'body'
 };
+
+var styleLoaders = [
+  'css-loader',
+  'sass-loader',
+  'postcss-loader'
+];
+
+if (production) {
+  styleLoaders.unshift('file-loader?name=[name].css', 'extract-loader');
+} else {
+  styleLoaders.unshift('style-loader');
+}
 
 module.exports = {
   entry: './src/index.js',
@@ -34,20 +48,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          {
-            loader: "style-loader" // creates style nodes from JS strings
-          },
-          {
-            loader: "css-loader" // translates CSS into CommonJS
-          },
-          {
-            loader: "sass-loader" // compiles Sass to CSS
-          },
-          {
-            loader: "postcss-loader"
-          }
-        ]
+        use: styleLoaders
       }
     ]
   }
