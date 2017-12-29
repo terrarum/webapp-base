@@ -19,8 +19,8 @@ var htmlWebpackOptions = {
 
 var styleLoaders = [
   'css-loader',
-  'sass-loader',
   'postcss-loader'
+  'sass-loader',
 ];
 
 if (production) {
