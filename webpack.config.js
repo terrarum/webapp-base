@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var production = process.env.NODE_ENV === 'production';
 
 var path = require('path');
@@ -51,5 +53,9 @@ module.exports = {
         use: styleLoaders
       }
     ]
-  }
+  },
+  node: {
+    fs: 'empty'
+  },
+  devtool: "#inline-source-map"
 };
