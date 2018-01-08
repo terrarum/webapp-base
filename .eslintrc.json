@@ -4,6 +4,6 @@
   },
   "extends": "airbnb-base",
   "rules": {
-    "brace-style": "stroustrup"
+    "brace-style": [2, "stroustrup"]
   }
 }

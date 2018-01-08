@@ -19,7 +19,7 @@ var htmlWebpackOptions = {
 
 var styleLoaders = [
   'css-loader',
-  'postcss-loader'
+  'postcss-loader',
   'sass-loader',
 ];
 
