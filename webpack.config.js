@@ -1,23 +1,26 @@
 /* eslint-disable */
 
-var production = process.env.NODE_ENV === 'production';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const production = process.env.NODE_ENV === 'production';
+const outputPath = path.resolve(__dirname, 'dist');
+const serverPath = path.resolve(__dirname, 'src/server');
 
-var htmlMinifiedOptions = {
+const htmlMinifiedOptions = {
   collapseWhitespace: true,
   removeRedundantAttributes: true
 };
 
-var htmlWebpackOptions = {
+const htmlWebpackOptions = {
   minify: htmlMinifiedOptions,
   hash: true,
-  template: 'src/index.html',
+  template: 'src/client/index.html',
   inject: 'body'
 };
 
-var styleLoaders = [
+const styleLoaders = [
   'css-loader',
   'postcss-loader',
   'sass-loader',
@@ -30,12 +33,13 @@ if (production) {
 }
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'client.js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
+    new CleanWebpackPlugin(outputPath),
     new HtmlWebpackPlugin(htmlWebpackOptions)
   ],
   module: {
