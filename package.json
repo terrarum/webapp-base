@@ -28,8 +28,12 @@
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
+    "start-server-webpack-plugin": "^2.2.1",
     "style-loader": "^0.20.2",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "webpack-node-externals": "^1.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }

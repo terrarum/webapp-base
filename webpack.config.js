@@ -1,65 +1,9 @@
-/* eslint-disable */
+const clientConfig = require('./webpack.config.client');
+const serverConfig = require('./webpack.config.server');
 
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const common = {};
 
-const production = process.env.NODE_ENV === 'production';
-const outputPath = path.resolve(__dirname, 'dist');
-const serverPath = path.resolve(__dirname, 'src/server');
-
-const htmlMinifiedOptions = {
-  collapseWhitespace: true,
-  removeRedundantAttributes: true
-};
-
-const htmlWebpackOptions = {
-  minify: htmlMinifiedOptions,
-  hash: true,
-  template: 'src/client/index.html',
-  inject: 'body'
-};
-
-const styleLoaders = [
-  'css-loader',
-  'postcss-loader',
-  'sass-loader',
+module.exports = [
+  Object.assign({}, common, clientConfig),
+  Object.assign({}, common, serverConfig)
 ];
-
-if (production) {
-  styleLoaders.unshift('file-loader?name=[name].css', 'extract-loader');
-} else {
-  styleLoaders.unshift('style-loader');
-}
-
-module.exports = {
-  entry: './src/client/index.js',
-  output: {
-    filename: 'client.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  plugins: [
-    new CleanWebpackPlugin(outputPath),
-    new HtmlWebpackPlugin(htmlWebpackOptions)
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: styleLoaders
-      }
-    ]
-  },
-  node: {
-    fs: 'empty'
-  },
-  devtool: "#inline-source-map"
-};
