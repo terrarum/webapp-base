@@ -1,14 +1,11 @@
 import http from 'http'
 import app from './server'
 
-const server = http.createServer(app)
+const PORT = process.env.port || 5000;
 
-let currentApp = app;
-server.listen(3000);
-if (module.hot) {
-  module.hot.accept('./server', () => {
-    server.removeListener('request', currentApp)
-    server.on('request', app);
-    currentApp = app
-  })
-}
+const server = http.createServer(app.create());
+
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}.`);
+});
+

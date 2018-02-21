@@ -2,12 +2,23 @@ import express from 'express';
 import common from '../common';
 
 common.init();
-const app = express();
 
-app.get('/api', (req, res) => {
-  res.send({
-    message: 'I am a server route and can also be hot reloaded!'
-  })
-});
+const create = function create() {
+  const app = express();
 
-export default app;
+  app.get('/api', (req, res) => {
+    res.send({
+      message: 'I am a server route!'
+    })
+  });
+
+  app.use('/', express.static(__dirname + '/'));
+
+  app.get('/', function(request, response) {
+    response.sendFile(path.join(__dirname, 'index.html'));
+  });
+};
+
+export default {
+  create,
+};
