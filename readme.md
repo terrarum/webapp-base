@@ -20,3 +20,7 @@ https://stackoverflow.com/questions/42611926/error-using-socket-io-along-with-we
 
 nodemon and babel, solves using import in node
 https://github.com/babel/example-node-server
+
+presumably babelrc can have options per env and per build target (e.g. do this for node in prod but this for node in dev)
+
+could add a test script to run eslint on node 

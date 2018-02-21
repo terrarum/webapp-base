@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "export NODE_ENV=production && webpack",
-    "dev": "webpack-dev-server --progress --colors",
+    "dev:client": "webpack-dev-server --progress --colors",
     "dev:server": "nodemon src/server/index.js --exec babel-node"
   },
   "author": "",
@@ -13,6 +13,7 @@
   "devDependencies": {
     "autoprefixer": "^8.0.0",
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.9",
@@ -32,10 +33,13 @@
     "start-server-webpack-plugin": "^2.2.1",
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "express": "^4.16.2",
-    "socket.io": "^2.0.4"
+    "lodash": "^4.17.5",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4"
   }
 }

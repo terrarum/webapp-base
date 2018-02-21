@@ -61,5 +61,17 @@ module.exports = {
   node: {
     fs: 'empty'
   },
-  devtool: "#inline-source-map"
+  devtool: "#inline-source-map",
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        pathRewrite: {"^/api": ""}
+      },
+      '/socket.io': {
+        target: 'http://localhost:5000',
+        ws: true
+      }
+    }
+  }
 };
