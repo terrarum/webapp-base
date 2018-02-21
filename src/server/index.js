@@ -14,5 +14,7 @@ server.listen(PORT, () => {
 
 io.on('connection', (socket) => {
   console.log(socket.id);
+
+  socket.emit('hello', 'hello from the server');
 });
 
