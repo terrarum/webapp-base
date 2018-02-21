@@ -30,3 +30,4 @@ To Do:
 - Lint the server code
 - Single command to run front and back ends
 - Production build command that compiles front and back ends into separate single files
+- Separate configs in babelrc for client, server, dev and prod
