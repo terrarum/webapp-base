@@ -24,3 +24,9 @@ https://github.com/babel/example-node-server
 presumably babelrc can have options per env and per build target (e.g. do this for node in prod but this for node in dev)
 
 could add a test script to run eslint on node 
+
+
+To Do:
+- Lint the server code
+- Single command to run front and back ends
+- Production build command that compiles front and back ends into separate single files
