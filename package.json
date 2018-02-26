@@ -6,8 +6,8 @@
   "scripts": {
     "build": "export NODE_ENV=production && webpack",
     "dev": "concurrently 'yarn run dev:server' 'yarn run dev:client'",
-    "dev:client": "webpack-dev-server --progress --colors",
-    "dev:server": "nodemon src/server/index.js --exec babel-node"
+    "dev:client": "BABEL_ENV=client webpack-dev-server --progress --colors",
+    "dev:server": "nodemon src/server/index.js --exec 'BABEL_ENV=server babel-node'"
   },
   "author": "",
   "license": "ISC",
