@@ -8,8 +8,8 @@ const create = function create() {
 
   app.get('/api', (req, res) => {
     res.send({
-      message: 'I am a server route!'
-    })
+      message: 'I am a server route!',
+    });
   });
 
   return app;

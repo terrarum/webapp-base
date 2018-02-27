@@ -4,11 +4,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const production = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 const outputPath = path.resolve(__dirname, 'dist');
 const serverPath = path.resolve(__dirname, 'src/server');
 
-const htmlMinifiedOptions = production ? {} : {
+const htmlMinifiedOptions = isProduction ? {} : {
   collapseWhitespace: true,
   removeRedundantAttributes: true
 };
@@ -26,18 +26,13 @@ const styleLoaders = [
   'sass-loader',
 ];
 
-if (production) {
+if (isProduction) {
   styleLoaders.unshift('file-loader?name=[name].css', 'extract-loader');
 } else {
   styleLoaders.unshift('style-loader');
 }
 
-module.exports = {
-  entry: './src/client/index.js',
-  output: {
-    filename: 'client.js',
-    path: outputPath
-  },
+const config = {
   plugins: [
     new CleanWebpackPlugin(outputPath),
     new HtmlWebpackPlugin(htmlWebpackOptions)
@@ -75,3 +70,31 @@ module.exports = {
     }
   }
 };
+
+if (isProduction) {
+  const prodConfig = {
+    entry: {
+      client: './src/client/index.js',
+      server: './src/server/index.js',
+    },
+    output: {
+      filename: '[name].js',
+      path: outputPath
+    },
+  };
+
+  Object.assign(config, prodConfig);
+}
+else {
+  const devConfig = {
+    entry: './src/client/index.js',
+    output: {
+      filename: 'client.js',
+      path: outputPath
+    },
+  };
+
+  Object.assign(config, devConfig);
+}
+
+module.exports = config;
